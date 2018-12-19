@@ -11,6 +11,8 @@ set('repository', '{Your Repository Name}');
 // 'master'
 set('branch', '{Your Branch Name}');
 set('git_tty', false);
+set('http_user', 'www-data');
+set('writable_mode', 'chmod');
 
 add('shared_files', ['.env']);
 add('shared_dirs', []);
@@ -39,4 +41,4 @@ before('deploy:shared','upload:env');
 after('deploy:failed', 'deploy:unlock');
 
 // Migrate database before symlink new release.
-before('deploy:symlink', 'artisan:migrate');
+// before('deploy:symlink', 'artisan:migrate');
