@@ -9,13 +9,14 @@
 #### マネクラで新規会員登録を行う
 
 以下のリンクから新規会員登録を行ってください。
+
 https://mc.lolipop.jp/
 
 #### プロジェクトを作成する
 
 コンテナはPHPコンテナを選択します。
 ![image](https://user-images.githubusercontent.com/13227145/50191052-3eb7d900-036f-11e9-89ae-e35a3c16f912.png)
-次のステップでプロジェクト名とパスワードを決めてプロジェクトを作成して下さい。
+次のステップでプロジェクト名とDBのパスワードを決めてプロジェクトを作成して下さい。
 
 #### SSH公開鍵を登録する。
 
@@ -68,7 +69,14 @@ Last login: Tue Dec 18 08:57:51 2018 from 10.1.12.1
 
 ### Laravel側の設定
 
-`.env.example`を`.env`としてコピーして下さい。
+次にLaravel側の設定になります。
+まずはいつものように`composer install`を実行します。
+
+```sh
+composer install
+```
+
+出来たら`.env.example`を`.env`としてコピーして下さい。
 
 ```
 cp .env.example .env
@@ -80,15 +88,32 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-### Deployerの設定
+以上でLaravel側の設定は終わりになります。
+デプロイする前にローカルでちゃんとLaravelがインストールされたかを確認したかい場合は`php artisan serve`でローカルサーバが立ち上がりますので、以下のコマンドを実行して下さい。
+
+```
+php artisan serve
+Laravel development server started: <http://127.0.0.1:8000>
+```
+
+ブラウザに`http://127.0.0.1:8000`を入れてアクセスして、Laravelの画面が表示されていれば無事にインストール作業は終わりです。
+以上でLaravel側の設定は終わりになります。
+
+### deployerの設定
 
 マネージドクラウドにLaravelのプロジェクトをデプロイする為にデプロイツールとして、[deployer](https://deployer.org/)を使います。
-deployer側でLaravel用の設定ファイルを自動で出力してくれるのですが、今回はその設定ファイルを事前にこちら側で用意したので、`deployer.php`と`.env`に設定を記述して言
-って下さい
+deployer側でLaravel用の設定ファイルを自動で出力してくれるのですが、今回はその設定ファイル改造してマネージドクラウドにデプロイする為のテンプレートファイル(`deployer.example.php`)を用意したので、以下のコマンドを実行してコピーして下さい。
 
-####リポジトリーとブランチの設定
+```sh
+$ cp deploy.example.php deploy.php
+```
+
+次に、デプロイする為の設定を`deployer.php`と`.env`に記述していきます。
+
+#### リポジトリーとブランチの設定
 
 `deployer.php`の以下の設定項目を編集して、自分の作業しているブランチ名とリポジトリー名を記述して下さい。
+
 ```php
 // git@github.com:Fendo181/lolipop-mc-starter-laravel.git
 set('repository', '{REPOSITORY NAME}');
@@ -123,11 +148,11 @@ host(env('DEPLOYER_MC_HOST'))
 
 #### マネクラのサーバから`Guthub`と公開鍵認証を行うように設定する
 
-`deployer`を使ってマネクラのプロジェクトをデプロイする際に、設定を見てわかる通りGithubからプロジェクトを指定して`git clone`してきます。
-その際にSSH公開鍵認証で取得する為、マネクラ側で生成した公開鍵をGithub側に登録する作業が必要です。
+`deployer`を使ってマネクラのプロジェクトをデプロイする際に、設定を見てわかる通り`Github`からプロジェクトを指定して`git clone`してきます。
+その際にSSH公開鍵認証で取得する為、マネクラ側で生成した公開鍵を`Github`に登録する作業が必要です。
 なので、上記で行った方法と同じ事を今度はマネクラのサーバ側で行います。
 
-マネクラのサーバで行う
+マネクラのサーバで実行して下さい。
 
 ```sh
 $ ssh-keygen -t rsa -b 4096 -C "YOUR@EMAIL.com"
@@ -141,7 +166,7 @@ $ cat ~/.ssh/id_rsa.pub
 公開鍵をGithubに登録します。
 [ここ](https://github.com/settings/keys)から追加してください。
 
-Githunに正常に登録されたかを確認するには以下のコマンドを実行してください。
+`Github`に正常に登録されたかを確認するには以下のコマンドを実行してください。
 
 ```sh
 sh -T git@github.com
@@ -154,6 +179,8 @@ Hi Fendo181! You've successfully authenticated, butGitHub does not provide shell
 odd-yoron-5564@ssh-laravel-first-endu-app:/var/www/
 ```
 
+#### デプロイする
+
 ここまでいけば`deployer.php`に設定は完了です。
 `terminal`上でデプロイコマンドを実行して下さい。
 
@@ -161,6 +188,65 @@ odd-yoron-5564@ssh-laravel-first-endu-app:/var/www/
  php ./vendor/bin/dep deploy production
 ```
 
-## 参考資料
+デプロイに成功するとこんな感じに表示されます。
+
+```sh
+duction
+✈︎ Deploying master on ssh-1.mc.lolipop.jp
+✔ Executing task deploy:prepare
+✔ Executing task deploy:lock
+✔ Executing task deploy:release
+✔ Executing task deploy:update_code
+✔ Executing task upload:env
+✔ Executing task deploy:shared
+✔ Executing task deploy:vendors
+✔ Executing task deploy:writable
+✔ Executing task artisan:storage:link
+✔ Executing task artisan:view:clear
+✔ Executing task artisan:cache:clear
+✔ Executing task artisan:config:cache
+✔ Executing task artisan:optimize
+✔ Executing task deploy:symlink
+✔ Executing task deploy:unlock
+✔ Executing task cleanup
+Successfully deployed!
+```
+
+#### ドキュメントルートにシンボリックリンクを貼る
+
+ここまで来れば後もう少しです。
+マネクラでは`/var/www/html`以下がドキュメントルートになっており、ここにファイルを置く事でアクセスが来た際にページを表示するようになっています。一方で`deployer`でデプロイしたLaravelのプロジェクトはどこにデプロイされたのか?と言うと、`var/www/current`以下にデプロイされます。
+正確には`var/www/releases/1`にデプロイされているのですが、`deployer`側で自動でシンボリックリンクを貼って`var/www/current`に飛ぶようにしています。
+
+これと同じようにシンボリックリンクを使って、ドキュメントルートになっている`var/www/html`にアクセスが来たら、`var/www/current/public`に飛ばすようにします。マネクラのサーバに入って以下のコマンドを実行してシンボリックリンクを生成して下さい。
+
+```sh
+ln -s /var/www/current/public/* /var/www/html/
+```
+※ここは絶対パスを指定してください。
+
+その後、`var/www/html`にシンボリックリンクが貼られている確認します。
+この時`var/www/html`以下には`index.html`と`index.php`が混在している状況になります。
+Webの仕様上、`index.html`と`index.php`が両方存在する際は、`index.html`を先に見てしまうので、既存の`index.html`と`img`ディレクトリは削除して下さい。
+
+```
+$rm index.html
+$rm -r img/
+```
+
+出来たら、管理画面に表示されている`プロジェクトURL`を叩いて、Laravelのプロジェクトが表示されている事を確認して下さい。
+
+
+![image](https://user-images.githubusercontent.com/13227145/50228546-94ca6200-03eb-11e9-9899-a5ab46c9dc25.png)
+
+おめでとうございます!
+これでLaravelのプロジェクトがマネージドクラウドに無事にデプロイできアプリケーションが公開されました! :tada:
+
+参考資料
+
+>- [シンボリックリンクとは](https://kazmax.zpp.jp/linux_beginner/symbolic_link.html#ah_1)
+
+
+## 資料
 
 - [Deployer — How to deploy Laravel application](https://deployer.org/blog/how-to-deploy-laravel)
