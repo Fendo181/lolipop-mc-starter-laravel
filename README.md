@@ -65,6 +65,102 @@ Last login: Tue Dec 18 08:57:51 2018 from 10.1.12.1
 
 
 以上でマネクラ側での初期設定は終了となります。
-お疲れ様でした。
+
+### Laravel側の設定
+
+`.env.example`を`.env`としてコピーして下さい。
+
+```
+cp .env.example .env
+```
+
+アプリケーションキーを登録して下さい。
+
+```
+php artisan key:generate
+```
+
+### Deployerの設定
+
+マネージドクラウドにLaravelのプロジェクトをデプロイする為にデプロイツールとして、[deployer](https://deployer.org/)を使います。
+deployer側でLaravel用の設定ファイルを自動で出力してくれるのですが、今回はその設定ファイルを事前にこちら側で用意したので、`deployer.php`と`.env`に設定を記述して言
+って下さい
+
+####リポジトリーとブランチの設定
+
+`deployer.php`の以下の設定項目を編集して、自分の作業しているブランチ名とリポジトリー名を記述して下さい。
+```php
+// git@github.com:Fendo181/lolipop-mc-starter-laravel.git
+set('repository', '{REPOSITORY NAME}');
+
+// master
+set('branch', '{BRANCH NAME}');
+```
+
+#### デプロイ先のサーバの設定
+
+`deployer.php`の`host`で始まっている所がデプロイ先のサーバの情報になります。
+
+
+```php
+host(env('DEPLOYER_MC_HOST'))
+    ->stage('production')
+    ->user(env('DEPLOYER_MC_USER'))
+    ->port(env('DEPLOYER_MC_PORT'))
+    ->identityFile('~/.ssh/id_rsa.pub')
+    ->set('deploy_path', '/var/www/');
+```
+
+ここの設定項目は`.env`から取得するようにしています。それぞれ以下のように対応しています。
+
+- `DEPLOYER_MC_HOST`: マネクラ側で設定したホスト名
+- `DEPLOYER_MC_USER`: マネクラ側で設定したユーザ名
+- `DEPLOYER_MC_PORT`: マネクラ側で設定されているポート番号
+
+![image](https://user-images.githubusercontent.com/13227145/50193298-5300d380-0379-11e9-8f00-daf42a1a0192.png)
+
+
+
+#### マネクラのサーバから`Guthub`と公開鍵認証を行うように設定する
+
+`deployer`を使ってマネクラのプロジェクトをデプロイする際に、設定を見てわかる通りGithubからプロジェクトを指定して`git clone`してきます。
+その際にSSH公開鍵認証で取得する為、マネクラ側で生成した公開鍵をGithub側に登録する作業が必要です。
+なので、上記で行った方法と同じ事を今度はマネクラのサーバ側で行います。
+
+マネクラのサーバで行う
+
+```sh
+$ ssh-keygen -t rsa -b 4096 -C "YOUR@EMAIL.com"
+
+# 鍵を確認する
+$ ls
+id_rsa  id_rsa.pub  known_hosts
+
+$ cat ~/.ssh/id_rsa.pub
+```
+公開鍵をGithubに登録します。
+[ここ](https://github.com/settings/keys)から追加してください。
+
+Githunに正常に登録されたかを確認するには以下のコマンドを実行してください。
+
+```sh
+sh -T git@github.com
+```
+
+上手く行けば、こんな感じにレスポンスが返ってきます。
+
+```
+Hi Fendo181! You've successfully authenticated, butGitHub does not provide shell access.
+odd-yoron-5564@ssh-laravel-first-endu-app:/var/www/
+```
+
+ここまでいけば`deployer.php`に設定は完了です。
+`terminal`上でデプロイコマンドを実行して下さい。
+
+```
+ php ./vendor/bin/dep deploy production
+```
 
 ## 参考資料
+
+- [Deployer — How to deploy Laravel application](https://deployer.org/blog/how-to-deploy-laravel)
