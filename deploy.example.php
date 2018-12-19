@@ -6,8 +6,10 @@ require 'recipe/laravel.php';
 with(new \Dotenv\Dotenv(__DIR__))->load();
 
 set('application', env('APP_NAME'));
-set('repository', '{Your Repository Name}'); // edit
-set('branch', '{Your Branch Name}'); // edit
+// 'git@github.com:Fendo181/lolipop-mc-starter-laravel.git'
+set('repository', '{Your Repository Name}');
+// 'master'
+set('branch', '{Your Branch Name}');
 set('git_tty', false);
 
 add('shared_files', ['.env']);
@@ -18,7 +20,8 @@ host(env('DEPLOYER_MC_HOST'))
     ->stage('production')
     ->user(env('DEPLOYER_MC_USER'))
     ->port(env('DEPLOYER_MC_PORT'))
-    ->identityFile('{/path/to/id_rsa}') //edit
+    // '~/.ssh/id_rsa'
+    ->identityFile('{/path/to/id_rsa}')
     ->set('deploy_path', '/var/www/');
 
 task('build', function () {
