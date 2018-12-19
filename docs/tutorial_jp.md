@@ -66,7 +66,7 @@ Last login: Tue Dec 18 08:57:51 2018 from 10.1.12.1
 ### Laravel側の設定
 
 次にLaravel側の設定になります。
-まずはいつものように`composer install`を実行します。
+まずはライブラリをインストールする為に`composer install`を実行します。
 
 ```sh
 composer install
@@ -84,8 +84,15 @@ cp .env.example .env
 php artisan key:generate
 ```
 
+バージョンを確認する
+
+```
+php artisan -V
+Laravel Framework 5.7.19
+```
+
 以上でLaravel側の設定は終わりになります。
-デプロイする前にローカルでちゃんとLaravelがインストールされたかを確認したかい場合は`php artisan serve`でローカルサーバが立ち上がりますので、以下のコマンドを実行して下さい。
+デプロイする前にローカルでちゃんとLaravelがインストールされたかを確認したい場合は`php artisan serve`でローカルサーバが立ち上がりますので、以下のコマンドを実行して下さい。
 
 ```
 php artisan serve
