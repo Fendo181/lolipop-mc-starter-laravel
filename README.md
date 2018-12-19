@@ -101,3 +101,6 @@ ln -s /var/www/current/public/* /var/www/html/x
 
 作業は以上に以上になります。
 お疲れ様でした。
+
+## License
+MIT
