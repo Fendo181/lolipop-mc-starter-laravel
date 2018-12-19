@@ -2,7 +2,9 @@
 
 簡単に[ロリポップ! マネージドクラウド](https://mc.lolipop.jp/)に、Laravelのプロジェクトを公開する手順を説明します。
 
-![image](https://user-images.githubusercontent.com/13227145/50228546-94ca6200-03eb-11e9-9899-a5ab46c9dc25.png)
+
+![Laravel](https://img.shields.io/badge/Laravel-v5.7.19-ff7964.svg?style=flat)
+![MIT](https://img.shields.io/npm/l/express.svg)
 
 ### Tutorial
 
