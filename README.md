@@ -4,7 +4,7 @@
 
 ![image](https://user-images.githubusercontent.com/13227145/50228546-94ca6200-03eb-11e9-9899-a5ab46c9dc25.png)
 
-### Tutorila
+### Tutorial
 
 初めてマネージドクラウドを使ってLaravelのプロジェクトを公開をする方は[tutorial_jp.md](https://github.com/Fendo181/lolipop-mc-starter-laravel/blob/master/docs/tutorial_jp.md)を参考にしてはじめてみて下さい。
 
