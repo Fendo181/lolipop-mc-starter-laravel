@@ -216,7 +216,7 @@ Successfully deployed!
 
 ここまで来れば後もう少しです。
 マネージドクラウドでは`/var/www/html`以下がドキュメントルートになっており、ここにファイルを置く事でアクセスが来た際にページを表示するようになっています。一方で`deployer`でデプロイしたLaravelのプロジェクトはどこにデプロイされたのか?と言うと、`var/www/current`以下にデプロイされます。
-正確には`var/www/releases/1`にデプロイされているのですが、`deployer`側で自動でシンボリックリンクを貼って`var/www/current`に飛ぶようにしています。
+正確には`var/www/releases/1`にデプロイされているのですが、`deployer`側で自動で[シンボリックリンク](https://kazmax.zpp.jp/linux_beginner/symbolic_link.html#ah_1)を貼って`var/www/current`に飛ぶようにしています。
 
 これと同じようにシンボリックリンクを使って、ドキュメントルートになっている`var/www/html`にアクセスが来たら、`var/www/current/public`に飛ばすようにします。マネージドクラウドのサーバに入って以下のコマンドを実行してシンボリックリンクを生成して下さい。
 
@@ -241,10 +241,6 @@ $rm -r img/
 
 おめでとうございます!
 これでLaravelのプロジェクトがマネージドクラウドに無事にデプロイできアプリケーションが公開されました! :tada:
-
-参考資料
-
->- [シンボリックリンクとは](https://kazmax.zpp.jp/linux_beginner/symbolic_link.html#ah_1)
 
 
 ## 資料
