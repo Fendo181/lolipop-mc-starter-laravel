@@ -1,10 +1,11 @@
 ## ロリポップ！マネージドクラウド スターター for Laravel
 
-簡単に[ロリポップ! マネージドクラウド](https://mc.lolipop.jp/)に、Laravelのプロジェクトを公開する手順を説明します。
-
-
 ![Laravel](https://img.shields.io/badge/Laravel-v5.7.19-ff7964.svg?style=flat)
 ![MIT](https://img.shields.io/npm/l/express.svg)
+
+簡単に[ロリポップ! マネージドクラウド](https://mc.lolipop.jp/)にLaravelのプロジェクトを公開する手順を説明します。
+
+![image](https://user-images.githubusercontent.com/13227145/50228546-94ca6200-03eb-11e9-9899-a5ab46c9dc25.png)
 
 ### Tutorial
 
@@ -12,7 +13,7 @@
 
 ### Quick Start
 
->※既に[ロリポップ！マネージドクラウド](https://mc.lolipop.jp/)で登録済みでサーバにログインできている状態を想定しています。
+>※既に[ロリポップ！マネージドクラウド](https://mc.lolipop.jp/)に登録済みでサーバにログインできている状態の方を想定しています。
 
 すぐに始めてみたい方は、まずプロジェクトを落としてきて
 
@@ -28,7 +29,7 @@ php artisan key:generate
 cp deployer.exaple.php deployer.php
 ```
 
-マネージドクラウドに管理画面の情報に従って環境変数を追記する
+マネージドクラウドの管理画面の情報に従って環境変数を追記する
 
 ```
 # mysql
@@ -40,12 +41,12 @@ DB_USERNAME=マネージドクラウドで設定しているmysqlのユーザ名
 DB_PASSWORD=マネージドクラウドで設定しているmysqlのパスワード
 
 # deployer MC setting
-DEPLOYER_MC_HOST`: マネージドクラウド側で設定したホスト名
-DEPLOYER_MC_USER`: マネージドクラウド側で設定したユーザ名
-DEPLOYER_MC_PORT`: マネージドクラウド側で設定されているポート番号
+DEPLOYER_MC_HOST`: マネージドクラウド側で設定しているホスト名
+DEPLOYER_MC_USER`: マネージドクラウド側で設定しているユーザ名
+DEPLOYER_MC_PORT`: マネージドクラウド側で設定しているポート番号
 ```
 
-リポジトリ名とブランチ名と秘密鍵を置いてあるパスの情報を`deployer.php`に記述する
+リポジトリ名とブランチ名と秘密鍵が置いてあるパスの情報を`deployer.php`に記述する
 
 ```php
 // git@github.com:Fendo181/lolipop-mc-starter-laravel.git
@@ -60,7 +61,7 @@ set('branch', '{BRANCH NAME}');
 ```
 
 サーバに入って、マネージドクラウド側でプロジェクトを`git clone`する為の公開鍵と秘密鍵を生成する
-[こちらの説明](https://github.com/Fendo181/lolipop-mc-starter-laravel/blob/master/docs/starter_jp.md#%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%AE%E3%82%B5%E3%83%BC%E3%83%90%E3%81%8B%E3%82%89guthub%E3%81%A8%E5%85%AC%E9%96%8B%E9%8D%B5%E8%AA%8D%E8%A8%BC%E3%82%92%E8%A1%8C%E3%81%86%E3%82%88%E3%81%86%E3%81%AB%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B)を参考にして下さい。
+[詳細はこちらの説明](https://github.com/Fendo181/lolipop-mc-starter-laravel/blob/master/docs/starter_jp.md#%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%AE%E3%82%B5%E3%83%BC%E3%83%90%E3%81%8B%E3%82%89guthub%E3%81%A8%E5%85%AC%E9%96%8B%E9%8D%B5%E8%AA%8D%E8%A8%BC%E3%82%92%E8%A1%8C%E3%81%86%E3%82%88%E3%81%86%E3%81%AB%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B)をご覧下さい。
 
 ここまで出来たら、`deployer`でLaravelのプロジェクトをデプロイします
 
@@ -101,8 +102,12 @@ ln -s /var/www/current/public/* /var/www/html/x
 
 マネージドクラウドの管理画面に戻って`プロジェクトURL`をクリックして、Laravelで作成したプロジェクトの画面が表示されている事を確認して下さい。
 
-作業は以上に以上になります。
+作業は以上になります。
 お疲れ様でした。
 
 ## License
 MIT
+
+## Author
+
+[Fendo181](https://twitter.com/Fendo181)
