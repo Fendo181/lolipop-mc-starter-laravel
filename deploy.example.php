@@ -6,8 +6,8 @@ require 'recipe/laravel.php';
 with(new \Dotenv\Dotenv(__DIR__))->load();
 
 set('application', env('APP_NAME'));
-set('repository', '{Your Repository Name}');
-set('branch', '{Branch Name}');
+set('repository', '{Your Repository Name}'); // edit
+set('branch', '{Your Branch Name}'); // edit
 set('git_tty', false);
 
 add('shared_files', ['.env']);
@@ -18,7 +18,7 @@ host(env('DEPLOYER_MC_HOST'))
     ->stage('production')
     ->user(env('DEPLOYER_MC_USER'))
     ->port(env('DEPLOYER_MC_PORT'))
-    ->identityFile('~/.ssh/id_rsa.pub')
+    ->identityFile('{/path/to/id_rsa}') //edit
     ->set('deploy_path', '/var/www/');
 
 task('build', function () {
