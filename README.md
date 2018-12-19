@@ -60,7 +60,7 @@ set('branch', '{BRANCH NAME}');
 ->identityFile('{/path/to/id_rsa}')
 ```
 
-サーバに入って、マネージドクラウド側でプロジェクトを`git clone`する為の公開鍵と秘密鍵を生成する
+サーバに入って、マネージドクラウド側でプロジェクトを`git clone`する為の公開鍵と秘密鍵を生成する  
 [詳細はこちらの説明](https://github.com/Fendo181/lolipop-mc-starter-laravel/blob/master/docs/starter_jp.md#%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%AE%E3%82%B5%E3%83%BC%E3%83%90%E3%81%8B%E3%82%89guthub%E3%81%A8%E5%85%AC%E9%96%8B%E9%8D%B5%E8%AA%8D%E8%A8%BC%E3%82%92%E8%A1%8C%E3%81%86%E3%82%88%E3%81%86%E3%81%AB%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B)をご覧下さい。
 
 ここまで出来たら、`deployer`でLaravelのプロジェクトをデプロイします
