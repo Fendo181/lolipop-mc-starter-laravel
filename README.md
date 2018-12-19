@@ -24,7 +24,7 @@ https://mc.lolipop.jp/
 
 ![image](https://user-images.githubusercontent.com/13227145/50191369-ef72a800-0370-11e9-8078-c32d696e9443.png)
 
-公開鍵の作成は自分の開発環境の`terminal`から`ssh-keygen -t rsa`を実行して`.ssh/`以下に公開鍵と秘密鍵を登録する方法と、最近リリースされたブラウザ側で公開鍵を作成して秘密鍵を取得する[SSHワンクリック登録](https://note.mu/mclolipopjp/n/n4cc4e43a7eda)方式があります。
+公開鍵の作成は自分の開発環境の`terminal`から`ssh-keygen -t rsa`を実行して`.ssh/`以下に公開鍵と秘密鍵を登録する方法と、ブラウザ側で公開鍵を作成して秘密鍵を取得する[SSHワンクリック登録](https://note.mu/mclolipopjp/n/n4cc4e43a7eda)方式があります。
 
 今回は`terminal`側で公開鍵を生成する方法を紹介しますが、SSHワンクリック登録で生成する場合は秘密鍵を保存する場所を`$HOME/.ssh/`以下に保存するようにして下さい。
 
@@ -66,8 +66,5 @@ Last login: Tue Dec 18 08:57:51 2018 from 10.1.12.1
 
 以上でマネクラ側での初期設定は終了となります。
 お疲れ様でした。
-
-
-
 
 ## 参考資料
