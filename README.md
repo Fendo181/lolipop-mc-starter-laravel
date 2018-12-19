@@ -29,7 +29,7 @@ php artisan key:generate
 cp deployer.exaple.php deployer.php
 ```
 
-マネージドクラウドの管理画面の情報に従って環境変数を追記する
+マネージドクラウドの管理画面の情報に従って環境変数を`.env`に追記する
 
 ```
 # mysql
@@ -46,7 +46,7 @@ DEPLOYER_MC_USER`: マネージドクラウド側で設定しているユーザ�
 DEPLOYER_MC_PORT`: マネージドクラウド側で設定しているポート番号
 ```
 
-リポジトリ名とブランチ名と秘密鍵が置いてあるパスの情報を`deployer.php`に記述する
+リポジトリ名とブランチ名と秘密鍵が置いてあるパスの情報を`deployer.php`に追記する
 
 ```php
 // git@github.com:Fendo181/lolipop-mc-starter-laravel.git
