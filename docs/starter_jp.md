@@ -23,7 +23,7 @@ https://mc.lolipop.jp/
 
 公開鍵の作成は自分の開発環境の`terminal`から`ssh-keygen -t rsa`を実行して`.ssh/`以下に公開鍵と秘密鍵を登録する方法と、ブラウザ側で公開鍵を作成して秘密鍵を取得する[SSHワンクリック登録](https://note.mu/mclolipopjp/n/n4cc4e43a7eda)方式があります。
 
-今回は`terminal`側で公開鍵を生成する方法を紹介しますが、SSHワンクリック登録で生成する場合は秘密鍵を保存する場所は`$HOME/.ssh/`以下に保存する事をお勧めします。 この秘密鍵の保存場所(path)は後で説明するデプロイ時の設定でも必要となりますので覚えておいて下さい。
+今回は`terminal`側で公開鍵を生成する方法を紹介しますが、SSHワンクリック登録で生成する場合は秘密鍵を保存する場所は`$HOME/.ssh/`以下に保存する事をお勧めします。 この秘密鍵の保存場所は後で説明するデプロイ時の設定でも必要となりますので覚えておいて下さい。
 
 
 ```sh
@@ -106,9 +106,9 @@ $ cp deploy.example.php deploy.php
 
 次に、デプロイする為の設定を`deployer.php`と`.env`に記述していきます。
 
-#### リポジトリーとブランチの設定
+#### リポジトリ名とブランチ名と秘密鍵が置いてあるパスの設定
 
-`deployer.php`の以下の設定項目を編集して、自分の作業しているブランチ名とリポジトリー名を記述して下さい。
+`deployer.php`の以下の設定項目を編集して、自分の作業しているブランチ名とリポジトリ名、そして秘密鍵(`id_rsa`)が置いてあるパスを記述して下さい。
 
 ```php
 // git@github.com:Fendo181/lolipop-mc-starter-laravel.git
@@ -116,6 +116,10 @@ set('repository', '{REPOSITORY NAME}');
 
 // master
 set('branch', '{BRANCH NAME}');
+
+
+// '~/.ssh/id_rsa'
+->identityFile('{/path/to/id_rsa}')
 ```
 
 #### デプロイ先のサーバの設定
