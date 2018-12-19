@@ -242,7 +242,90 @@ $rm -r img/
 おめでとうございます!
 これでLaravelのプロジェクトがマネージドクラウドに無事にデプロイできアプリケーションが公開されました! :tada:
 
+### マイグレーションを実行する
+
+最後にマイグレーションですが、まずマネージドクラウド側の`mysql`に入る為の設定を記述していきます。
+
+#### .envにDBの設定を記述する
+
+マネクラの管理画面に入ってmysqlの設定を元に`.env`の設定を追記してください。
+
+```.env
+DB_CONNECTION=mysql
+DB_HOST=マネクラで設定しているmysqlのホスト名
+DB_PORT=3306
+DB_DATABASE=マネクラで設定しているmysqlのデータベース名
+DB_USERNAME=マネクラで設定しているmysqlのユーザ名
+DB_PASSWORD=マネクラで設定しているmysqlのパスワード
+```
+
+![image](https://user-images.githubusercontent.com/13227145/50230442-086e6e00-03f0-11e9-82f4-2650a4dc333a.png)
+
+#### デプロイ実行時にマイグレーションを行う
+
+この状態でデプロイ後にサーバに入って`php artisan migrade`を実行しても良いですが、`deployer`でデプロイ後に自動でマイグレーションを実行するようにする事もできます。`deployer.php`の一番下にある`before('deploy:symlink', 'artisan:migrate')`をコメントアウトして下さい。
+
+```php
+// Migrate database before symlink new release.
+before('deploy:symlink', 'artisan:migrate');
+```
+
+この状態でデプロイを実行します。
+
+```sh
+木 20 :lolipop-mc-starter-laravel [endu]# php vendor/bin/dep deploy production
+✈︎ Deploying master on ssh-1.mc.lolipop.jp
+✔ Executing task deploy:prepare
+✔ Executing task deploy:lock
+✔ Executing task deploy:release
+✔ Executing task deploy:update_code
+✔ Executing task upload:env
+✔ Executing task deploy:shared
+✔ Executing task deploy:vendors
+✔ Executing task deploy:writable
+✔ Executing task artisan:storage:link
+✔ Executing task artisan:view:clear
+✔ Executing task artisan:cache:clear
+✔ Executing task artisan:config:cache
+✔ Executing task artisan:optimize
+✔ Executing task artisan:migrate //自動でマイグレーションを実行してくれる
+✔ Executing task deploy:symlink
+✔ Executing task deploy:unlock
+✔ Executing task cleanup
+Successfully deployed!
+```
+
+マネージドクラウドのサーバに入ってmysql側で正常にtableが作成されたかを確認します。
+以下のコマンドを実行してmysqlにはいります。
+
+```sh
+$ mysql -uDB_USERNAME -hDB_HOST -p
+Enter password:DB_PASS
+```
+DBを選択する。
+
+```
+use DB_DATABASE
+```
+
+`table`を確認する。
+
+```sql
+mysql> mysql> select * from migrations;
++----+------------------------------------------------+-------+
+| id | migration                                      | batch |
++----+------------------------------------------------+-------+
+|  3 | 2014_10_12_000000_create_users_table           |     1 |
+|  4 | 2014_10_12_100000_create_password_resets_table |     1 |
++----+------------------------------------------------+-------+
+2 rows in set (0.00 sec)
+```
+
+マイグレーションが正常に実行された事を確認しました。
+以上で「ロリポップ！マネージドクラウド スターター for Laravel」の解説は終わりになります。
+お疲れ様でした。
 
 ## 資料
 
+- [インストール 5.7 Laravel](https://readouble.com/laravel/5.7/ja/installation.html)
 - [Deployer — How to deploy Laravel application](https://deployer.org/blog/how-to-deploy-laravel)
