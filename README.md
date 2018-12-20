@@ -41,9 +41,9 @@ DB_USERNAME=マネージドクラウドで設定しているmysqlのユーザ名
 DB_PASSWORD=マネージドクラウドで設定しているmysqlのパスワード
 
 # deployer MC setting
-DEPLOYER_MC_HOST`: マネージドクラウド側で設定しているホスト名
-DEPLOYER_MC_USER`: マネージドクラウド側で設定しているユーザ名
-DEPLOYER_MC_PORT`: マネージドクラウド側で設定しているポート番号
+DEPLOYER_MC_HOST: マネージドクラウド側で設定しているホスト名
+DEPLOYER_MC_USER: マネージドクラウド側で設定しているユーザ名
+DEPLOYER_MC_PORT: マネージドクラウド側で設定しているポート番号
 ```
 
 リポジトリ名とブランチ名と秘密鍵が置いてあるパスの情報を`deployer.php`に追記する
