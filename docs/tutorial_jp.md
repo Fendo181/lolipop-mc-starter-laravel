@@ -322,7 +322,7 @@ use DB_DATABASE
 `table`を確認する。
 
 ```sql
-mysql> mysql> select * from migrations;
+mysql> select * from migrations;
 +----+------------------------------------------------+-------+
 | id | migration                                      | batch |
 +----+------------------------------------------------+-------+
