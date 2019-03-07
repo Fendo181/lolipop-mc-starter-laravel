@@ -180,7 +180,7 @@ $ cat ~/.ssh/id_rsa.pub
 `Github`に正常に登録されたかを確認するには以下のコマンドを実行してください。
 
 ```sh
-sh -T git@github.com
+ssh -T git@github.com
 ```
 
 上手く行けば、こんな感じにレスポンスが返ってきます。
