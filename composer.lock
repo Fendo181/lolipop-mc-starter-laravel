@@ -8,28 +8,28 @@
     "packages": [
         {
             "name": "deployer/deployer",
-            "version": "v6.5.0",
+            "version": "v6.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deployphp/deployer.git",
-                "reference": "427b83ea550a7063cfcd543ce3e9e37f11c49419"
+                "reference": "5095b5de166498aedb6ef7ffff98d7243fa036ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deployphp/deployer/zipball/427b83ea550a7063cfcd543ce3e9e37f11c49419",
-                "reference": "427b83ea550a7063cfcd543ce3e9e37f11c49419",
+                "url": "https://api.github.com/repos/deployphp/deployer/zipball/5095b5de166498aedb6ef7ffff98d7243fa036ea",
+                "reference": "5095b5de166498aedb6ef7ffff98d7243fa036ea",
                 "shasum": ""
             },
             "require": {
-                "deployer/phar-update": "~2.1",
-                "php": "~7.0",
+                "deployer/phar-update": "~2.2",
+                "php": "^7.2",
                 "pimple/pimple": "~3.0",
-                "symfony/console": "~2.7|~3.0|~4.0",
-                "symfony/process": "~2.7|~3.0|~4.0",
-                "symfony/yaml": "~2.7|~3.0|~4.0"
+                "symfony/console": "~2.7|~3.0|~4.0|~5.0",
+                "symfony/process": "~2.7|~3.0|~4.0|~5.0",
+                "symfony/yaml": "~2.7|~3.0|~4.0|~5.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.4.3"
+                "phpunit/phpunit": "^8"
             },
             "bin": [
                 "bin/dep"
@@ -56,30 +56,30 @@
             ],
             "description": "Deployment Tool",
             "homepage": "https://deployer.org",
-            "time": "2019-08-12T18:28:24+00:00"
+            "time": "2019-12-18T17:30:49+00:00"
         },
         {
             "name": "deployer/phar-update",
-            "version": "v2.1.0",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deployphp/phar-update.git",
-                "reference": "a6c7c3a1b2eb6983ebeb59cd1dc1c2e9df115c4a"
+                "reference": "9ad07422f2cd43a1382ee8e134bdcd3a374848e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deployphp/phar-update/zipball/a6c7c3a1b2eb6983ebeb59cd1dc1c2e9df115c4a",
-                "reference": "a6c7c3a1b2eb6983ebeb59cd1dc1c2e9df115c4a",
+                "url": "https://api.github.com/repos/deployphp/phar-update/zipball/9ad07422f2cd43a1382ee8e134bdcd3a374848e3",
+                "reference": "9ad07422f2cd43a1382ee8e134bdcd3a374848e3",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
-                "symfony/console": "~2.7|~3.0|~4.0"
+                "symfony/console": "~2.7|~3.0|~4.0|~5.0"
             },
             "require-dev": {
                 "mikey179/vfsstream": "1.1.0",
                 "phpunit/phpunit": "3.7.*",
-                "symfony/process": "~2.7|~3.0|~4.0"
+                "symfony/process": "~2.7|~3.0|~4.0|~5.0"
             },
             "type": "library",
             "autoload": {
@@ -112,7 +112,7 @@
                 "phar",
                 "update"
             ],
-            "time": "2018-02-27T17:29:10+00:00"
+            "time": "2019-12-12T13:45:57+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -2763,16 +2763,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.3.4",
+            "version": "v4.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "5a0b7c32dc3ec56fd4abae8a4a71b0cf05013686"
+                "reference": "a08832b974dd5fafe3085a66d41fe4c84bb2628c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/5a0b7c32dc3ec56fd4abae8a4a71b0cf05013686",
-                "reference": "5a0b7c32dc3ec56fd4abae8a4a71b0cf05013686",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/a08832b974dd5fafe3085a66d41fe4c84bb2628c",
+                "reference": "a08832b974dd5fafe3085a66d41fe4c84bb2628c",
                 "shasum": ""
             },
             "require": {
@@ -2783,7 +2783,7 @@
                 "symfony/console": "<3.4"
             },
             "require-dev": {
-                "symfony/console": "~3.4|~4.0"
+                "symfony/console": "^3.4|^4.0|^5.0"
             },
             "suggest": {
                 "symfony/console": "For validating YAML files using the lint command"
@@ -2791,7 +2791,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "4.4-dev"
                 }
             },
             "autoload": {
@@ -2818,7 +2818,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2019-08-20T14:27:59+00:00"
+            "time": "2019-12-10T10:33:21+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
